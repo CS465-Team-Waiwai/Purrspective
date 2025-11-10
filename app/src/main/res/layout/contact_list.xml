@@ -13,6 +13,15 @@
         android:title="@string/contact_header"
         android:titleTextColor="@color/white" />
 
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Contact"
+        android:background="@color/dark_orange"
+        android:textColor="@android:color/white"
+        android:padding="12dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewContacts"
         android:layout_width="match_parent"
