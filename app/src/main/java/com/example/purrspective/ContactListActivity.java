@@ -1,6 +1,8 @@
 package com.example.purrspective;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -36,8 +38,11 @@ public class ContactListActivity extends AppCompatActivity {
         recyclerView.setAdapter(new ContactAdapter(contacts));
 
         Button buttonAdd = findViewById(R.id.buttonAdd);
-        buttonAdd.setOnClickListener(v ->
-                Toast.makeText(this, "Button clicked", Toast.LENGTH_SHORT).show());
-
+        buttonAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ContactListActivity.this,AddContactActivity.class));
+            }
+        });
     }
 }
