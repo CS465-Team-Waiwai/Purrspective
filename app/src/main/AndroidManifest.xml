@@ -23,6 +23,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddContactActivity"
+            android:label="@string/add_contact">
+        </activity>
+        <activity
+            android:name=".ContactListActivity"
+            android:label="@string/contact_list">
+        </activity>
     </application>
 
 </manifest>
