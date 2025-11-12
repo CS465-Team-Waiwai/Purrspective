@@ -12,7 +12,9 @@
         android:layout_height="50dp"
         android:src="@drawable/default_avatar"
         android:scaleType="centerCrop"
-        android:layout_marginEnd="12dp"/>
+        android:layout_marginEnd="12dp"
+        android:clickable="true"
+        android:focusable="true"/>
 
     <TextView
         android:id="@+id/textName"
@@ -21,5 +23,20 @@
         android:text="Sample Name"
         android:textSize="20sp"
         android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:clickable="true"
+        android:focusable="true"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/contact_settings"
+        android:src="@drawable/settings_dots"
+        android:clickable="true"
+        android:focusable="true"/>
 </LinearLayout>
