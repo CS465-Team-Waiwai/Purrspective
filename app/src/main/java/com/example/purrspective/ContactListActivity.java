@@ -34,7 +34,7 @@ public class ContactListActivity extends AppCompatActivity {
         AppDatabase db = AppDatabase.getInstance(this);
         List<Contact> contacts = db.contactDao().getAllContacts();
 
-        ContactAdapter adapter = new ContactAdapter(contacts);
+        ContactAdapter adapter = new ContactAdapter(this, contacts);
         recyclerView.setAdapter(adapter);
 
         Button buttonAdd = findViewById(R.id.buttonAdd);
