@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/cream"
+    android:padding="8dp">
+
+
+    <!-- Scrollable Chat Area -->
+    <ScrollView
+        android:id="@+id/chatScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/chatContainer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="4dp">
+
+            <!-- Filler Stickers to show how interface would look like -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cat_sticker1"
+                android:padding="10dp"
+                android:layout_gravity="start"
+                android:adjustViewBounds="true"
+                android:maxWidth="200dp"
+                android:maxHeight="200dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/cat_sticker2"
+                android:padding="10dp"
+                android:layout_gravity="end"
+                android:adjustViewBounds="true"
+                android:maxWidth="200dp"
+                android:maxHeight="200dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Message Input Bar -->
+    <LinearLayout
+        android:id="@+id/inputContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="6dp"
+        android:background="@color/white"
+        android:elevation="4dp">
+
+        <EditText
+            android:id="@+id/messageInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Type a message..."
+            android:padding="10dp"
+            android:background="@android:color/transparent"
+            android:inputType="textCapSentences|textMultiLine" />
+
+        <!-- Sticker Button -->
+        <ImageButton
+            android:id="@+id/stickerButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Open sticker pack"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sticker_button"
+            tools:visibility="visible" />
+
+        <!-- Send Button (which is hidden until a sticker is selected -->
+
+        <ImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Send message"
+            android:src="@android:drawable/ic_menu_send"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <!-- Sticker Pack Section (Hidden by default) -->
+    <LinearLayout
+        android:id="@+id/stickerPack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cream"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:id="@+id/sticker1"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Sticker 3"
+            android:padding="6dp"
+            android:src="@drawable/cat_sticker3" />
+
+        <ImageView
+            android:id="@+id/sticker2"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Sticker 4"
+            android:padding="6dp"
+            android:src="@drawable/cat_sticker4" />
+
+        <ImageView
+            android:id="@+id/sticker3"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Sticker 5"
+            android:padding="6dp"
+            android:src="@drawable/cat_sticker5" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

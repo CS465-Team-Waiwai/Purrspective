@@ -1,5 +1,6 @@
 package com.example.purrspective;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,4 +49,5 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             textName = itemView.findViewById(R.id.textName);
         }
     }
+
 }

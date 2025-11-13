@@ -44,5 +44,12 @@ public class ContactListActivity extends AppCompatActivity {
                 startActivity(new Intent(ContactListActivity.this,AddContactActivity.class));
             }
         });
+
+//        buttonAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(ContactListActivity.this, ChatActivity.class));
+//            }
+//        });
     }
 }
