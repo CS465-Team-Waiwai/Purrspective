@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,7 +41,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         *   toast message is just placeholder, get rid of them when adding your code */
         // click on the row -> open chat window activity
         holder.itemView.setOnClickListener(v -> {
-            Toast.makeText(context,"Open chat window", Toast.LENGTH_SHORT).show();
+            context.startActivity(new Intent(context, ChatActivity.class));
         });
 
         // Settings icon click -> open customization page
