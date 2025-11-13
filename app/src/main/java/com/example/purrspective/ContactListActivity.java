@@ -30,19 +30,21 @@ public class ContactListActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewContacts);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<Contact> contacts = new ArrayList<>();
-        contacts.add(new Contact("Contact A", R.drawable.default_avatar));
-        contacts.add(new Contact("Contact B", R.drawable.default_avatar));
-        contacts.add(new Contact("Contact C", R.drawable.default_avatar));
+        // load contacts from db
+        AppDatabase db = AppDatabase.getInstance(this);
+        List<Contact> contacts = db.contactDao().getAllContacts();
 
-        recyclerView.setAdapter(new ContactAdapter(contacts));
+        ContactAdapter adapter = new ContactAdapter(this, contacts);
+        recyclerView.setAdapter(adapter);
 
         Button buttonAdd = findViewById(R.id.buttonAdd);
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                finish();
                 startActivity(new Intent(ContactListActivity.this,AddContactActivity.class));
             }
         });
+
     }
 }
