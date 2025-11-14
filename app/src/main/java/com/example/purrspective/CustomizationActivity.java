@@ -35,52 +35,6 @@ public class CustomizationActivity extends AppCompatActivity {
                 R.drawable.image3,
                 R.drawable.image4 // add as many as you want
         };
-        LinearLayout colorContainer = findViewById(R.id.colorContainer);
-
-// 1. Array of colors you want
-        int[] colors = {
-                Color.parseColor("#FF6F61"),
-                Color.parseColor("#6B5B95"),
-                Color.parseColor("#88B04B"),
-                Color.parseColor("#F7CAC9"),
-                Color.parseColor("#92A8D1"),
-                Color.parseColor("#034F84")
-        };
-
-// 2. Track the currently selected circle
-        final View[] selectedView = { null };
-
-        for (int c : colors) {
-            // Inflate the circle layout
-            View v = getLayoutInflater().inflate(R.layout.color_circle, colorContainer, false);
-
-            // Apply the actual color
-            v.getBackground().setTint(c);
-
-            // Set padding so border is visible
-            v.setPadding(6, 6, 6, 6);
-
-            // Click listener for selection
-            v.setOnClickListener(view -> {
-
-                // Remove border from previously selected color
-                if (selectedView[0] != null) {
-                    selectedView[0].getBackground().setTintMode(android.graphics.PorterDuff.Mode.SRC_IN);
-                    ((android.graphics.drawable.GradientDrawable) selectedView[0].getBackground())
-                            .setStroke(4, Color.TRANSPARENT);
-                }
-
-                // Add green border to this circle
-                ((android.graphics.drawable.GradientDrawable) v.getBackground())
-                        .setStroke(4, Color.GREEN);
-
-                // Store selected view
-                selectedView[0] = v;
-            });
-
-            // Add circle to the layout
-            colorContainer.addView(v);
-        }
 
         rv.setAdapter(new ImageCarouselAdapter(images));
     }
