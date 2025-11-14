@@ -31,6 +31,10 @@
             android:name=".ContactListActivity"
             android:label="@string/contact_list">
         </activity>
+
+        <activity android:name=".ChatActivity"
+            android:label="chat_screen">
+        </activity>
     </application>
 
 </manifest>
