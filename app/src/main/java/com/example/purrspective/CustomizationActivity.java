@@ -37,5 +37,15 @@ public class CustomizationActivity extends AppCompatActivity {
         };
 
         rv.setAdapter(new ImageCarouselAdapter(images));
+
+        /* TODO: Complete the functionality */
+        Button saveButton = findViewById(R.id.save_button);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // doesn't do anything yet, it just quits this activity
+                finish();
+            }
+        });
     }
 }

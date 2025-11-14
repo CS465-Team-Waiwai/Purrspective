@@ -37,8 +37,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.textName.setText(contact.getName());
         holder.imageProfile.setImageResource(contact.getImageResId());
 
-        /* TODO: Edit below to open your respective activity when clicking on the contact
-        *   toast message is just placeholder, get rid of them when adding your code */
         // click on the row -> open chat window activity
         holder.itemView.setOnClickListener(v -> {
             context.startActivity(new Intent(context, ChatActivity.class));
@@ -46,7 +44,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
         // Settings icon click -> open customization page
         holder.settingsDots.setOnClickListener(v -> {
-            Toast.makeText(context,"Open customization window", Toast.LENGTH_SHORT).show();
+            context.startActivity(new Intent(context, CustomizationActivity.class));
         });
     }
 
