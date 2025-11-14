@@ -9,6 +9,14 @@
     android:background="@color/cream"
     android:padding="8dp">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/backButton"
+        android:text="Back"
+        android:backgroundTint="@color/orange">
+    </Button>
+
 
     <!-- Scrollable Chat Area -->
     <ScrollView

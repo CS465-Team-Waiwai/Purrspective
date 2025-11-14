@@ -2,6 +2,7 @@ package com.example.purrspective;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,8 +31,16 @@ public class ChatActivity extends AppCompatActivity {
         chatScrollView = findViewById(R.id.chatScrollView);
         stickerPack = findViewById(R.id.stickerPack);
         sendButton = findViewById(R.id.sendButton);
+        Button backButton = findViewById(R.id.backButton);
 
         ImageView sticker1 = findViewById(R.id.sticker1);
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         // toggle sticker pack visibility
         stickerButton.setOnClickListener(new View.OnClickListener() {
