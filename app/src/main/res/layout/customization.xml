@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Friend A"
+            android:background="@color/orange"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Customize Your Profile"
+            android:layout_gravity="center"
+            android:background="@color/dark_orange"
+            android:textColor="@color/white"
+            android:textSize="38dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*only friend A will see these changes"
+            android:layout_marginTop="2dp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select profile icon style:"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select color theme:"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+        <LinearLayout
+            android:id="@+id/colorContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp">
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_orange"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_blue"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_purple"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_yellow"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_pink"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!-- Add more Views for additional colors -->
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:clickable="true"
+            android:text="View or select saved styles"/>
+
+    </LinearLayout>
+
+    <!-- Step 1
+    Add an ImageView with the following attributes
+    android:layout_width=”match_parent”
+    android:layout_height=”match_parent”
+    android:scaleType=”centerCrop”
+    android:layout_gravity=”top”
+    android:src=”@drawable/background”
+    -->
+
+    <!-- Step 2-1
+    Add a vertical linear layout by setting values for the following attributes
+    android:layout_width
+    android:layout_height
+    android:orientation
+    android:gravity
+    -->
+
+
+    <!-- Step 2-2
+    Add a logo image and three buttons in the linear layout
+
+    for the logo image, set the following attributes:
+    android:layout_width
+    android:layout_height
+    android:src: instagram_logo
+
+    for three buttons, set the following attributes:
+    android:layout_width
+    android:layout_height
+    android:text: Please add text based on the finalized interface
+    -->
+
+
+
+
+
+    <!-- Step 2-3
+    Beautify buttons
+
+    For these three buttons, you need to set some combination of the following attributes:
+
+    android:background or backgroundTint (Sets the background color). Use an eyedropper tool to extract the blue color from the Facebook_icon or other resource and add transparency.
+    android:layout_marginLeft
+    android:layout_marginRight
+    android:layout_marginTop
+    android:textAllCaps
+    android:textColor
+    android:textSize
+    android:paddingLeft
+    android:paddingRight
+
+    For the "Register with Facebook" button, you also need add
+    the Facebook_icon.png by setting the attribute:
+
+    android:drawableLeft(Add the Facebook_icon)
+
+    -->
+
+
+
+    <!-- Step 3-1
+    Add a nested horizontal linear layout in the
+    vertical linear layout
+
+    android:layout_width
+    android:layout_height
+    android:orientation
+    android:layout_marginTop
+    android:gravity
+    -->
+
+
+
+
+
+
+    <!--   Step 3-2
+    Add two TextView in the nested horizontal linear layout
+    Set the following attributes
+    android:layout_height
+    android:layout_width
+    android:layout_marginLeft and/or layout_marginRight
+    android:textSize
+    android:textColor
+    android:text: "Forget Password" and "Privacy Policy"
+android:gravity
+android:layout_weight
+
+    -->
+
+
+</FrameLayout>
