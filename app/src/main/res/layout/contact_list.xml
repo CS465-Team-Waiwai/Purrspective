@@ -12,13 +12,16 @@
         android:layout_height="60dp"
         android:background="@color/sandy_brown"
         android:title="@string/contact_header"
-        android:titleTextColor="@color/white" />
+
+        app:titleTextAppearance="@style/ToolbarTitleText"
+        android:titleTextColor="@color/peach" />
 
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Contact"
+        android:textSize = "20dp"
         android:background="@color/moss"
         android:textColor="@color/matcha"
         android:padding="12dp"/>
