@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwnerKt;
+import kotlinx.coroutines.CoroutineScope;
+import kotlinx.coroutines.Dispatchers;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -117,9 +120,54 @@ public class ChatActivity extends AppCompatActivity {
                     messageInput.setText("");
                     selectedSticker = 0;
                     sendButton.setVisibility(View.GONE);
+
+                    if (!message.isEmpty()) {
+                        getAIResponse(message);
+                    }
+
                 }
             }
         });
 
     }
+
+    private void addAIMessage(String text) {
+        LinearLayout aiLayout = new LinearLayout(this);
+        aiLayout.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.gravity = android.view.Gravity.START; // left side
+        params.setMargins(0, 12, 0, 12);
+        aiLayout.setLayoutParams(params);
+
+        aiLayout.setBackgroundResource(R.drawable.message_bubble);
+
+        android.widget.TextView textView = new android.widget.TextView(this);
+        textView.setText(text);
+        textView.setTextColor(getResources().getColor(android.R.color.black));
+        textView.setTextSize(16);
+        textView.setPadding(8, 4, 8, 4);
+
+        aiLayout.addView(textView);
+        chatContainer.addView(aiLayout);
+
+        chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN));
+    }
+
+    private void getAIResponse(String prompt) {
+
+
+        GeminiHelper.INSTANCE.sendMessageAsync(prompt, reply -> {
+
+            addAIMessage(reply);
+            return kotlin.Unit.INSTANCE;
+        });
+    }
+
+
+
+
 }

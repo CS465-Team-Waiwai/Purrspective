@@ -21,8 +21,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        // THIS is where the field gets created
-        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiKey\"")
+        //buildConfigField("String", "GEMINI_API_KEY", "\"$geminiKey\"")
     }
 
     buildTypes {
@@ -74,8 +73,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
-    implementation(platform("com.google.ai:google-ai-client-bom:0.3.0"))
-    implementation("com.google.ai:generativeai")
+
+    //implementation(platform("com.google.ai:google-ai-client-bom:0.3.0"))
+    //implementation("com.google.ai:generativeai")
+    implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
+    implementation("com.google.firebase:firebase-ai")
+
 }
