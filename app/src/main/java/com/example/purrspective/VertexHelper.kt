@@ -1,6 +1,7 @@
 package com.example.purrspective
 
 import android.content.Context
+import android.util.Log
 import com.google.firebase.Firebase
 import com.google.firebase.ai.ai
 import com.google.firebase.ai.type.GenerativeBackend
@@ -18,12 +19,13 @@ object VertexHelper {
     ) {
         CoroutineScope(Dispatchers.IO).launch {
             val model = Firebase.ai(
-                backend = GenerativeBackend.vertexAI()
+                backend = GenerativeBackend.googleAI()
             ).generativeModel("gemini-2.5-flash")
 
             val response = try {
                 model.generateContent(prompt)
             } catch (e: Exception) {
+                Log.e("AI", "Generation failed", e)
                 null
             }
 

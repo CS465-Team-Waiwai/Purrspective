@@ -62,7 +62,6 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation("androidx.room:room-runtime:2.8.3")
-    implementation(libs.firebase.vertexai)
     annotationProcessor("androidx.room:room-compiler:2.8.3")
     implementation("androidx.room:room-ktx:2.8.3")
 
@@ -84,6 +83,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-ai")
+
 
 
 }
