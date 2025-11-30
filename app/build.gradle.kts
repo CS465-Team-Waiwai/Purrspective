@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("com.google.gms.google-services")
 }
 
 val localProps = Properties()
@@ -61,7 +62,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation("androidx.room:room-runtime:2.8.3")
-    implementation(libs.generativeai)
+    implementation(libs.firebase.vertexai)
     annotationProcessor("androidx.room:room-compiler:2.8.3")
     implementation("androidx.room:room-ktx:2.8.3")
 
@@ -75,11 +76,14 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.activity:activity-ktx:1.9.0")
 
 
-    //implementation(platform("com.google.ai:google-ai-client-bom:0.3.0"))
-    //implementation("com.google.ai:generativeai")
-    implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
+
+    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
+    implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-ai")
+
 
 }

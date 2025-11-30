@@ -1,21 +1,26 @@
 package com.example.purrspective
 
-import com.google.ai.client.generativeai.GenerativeModel
+import android.content.Context
+import com.google.firebase.Firebase
+import com.google.firebase.ai.ai
+import com.google.firebase.ai.type.GenerativeBackend
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-object GeminiHelper {
+object VertexHelper {
 
-    private val model = GenerativeModel(
-        modelName = "gemini-1.5-flash",
-        // the key isn't supposed to be visible but I'll put it here so it's easier for everyone to use
-        apiKey = "AIzaSyB_ZCvys4SQV9lu5pOZr0lrVCgkzv9N7wQ"
-    )
-
-    fun sendMessageAsync(prompt: String, callback: (String) -> Unit) {
+    fun askAsync(
+        context: Context,
+        prompt: String,
+        callback: (String) -> Unit
+    ) {
         CoroutineScope(Dispatchers.IO).launch {
+            val model = Firebase.ai(
+                backend = GenerativeBackend.vertexAI()
+            ).generativeModel("gemini-2.5-flash")
+
             val response = try {
                 model.generateContent(prompt)
             } catch (e: Exception) {
@@ -24,7 +29,7 @@ object GeminiHelper {
 
             val text = response?.text ?: "Oops, I couldn't generate a response."
 
-            // Switch back to Main thread before calling back into Java/UI
+            // Switch back to main thread for UI update
             withContext(Dispatchers.Main) {
                 callback(text)
             }

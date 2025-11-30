@@ -9,9 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LifecycleOwnerKt;
-import kotlinx.coroutines.CoroutineScope;
-import kotlinx.coroutines.Dispatchers;
+
+import kotlin.Unit;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -158,14 +157,13 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void getAIResponse(String prompt) {
-
-
-        GeminiHelper.INSTANCE.sendMessageAsync(prompt, reply -> {
-
+        VertexHelper.INSTANCE.askAsync(this, prompt, reply -> {
+            // This runs on the main thread already
             addAIMessage(reply);
-            return kotlin.Unit.INSTANCE;
+            return Unit.INSTANCE;
         });
     }
+
 
 
 
