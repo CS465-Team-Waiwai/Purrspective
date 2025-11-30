@@ -22,6 +22,11 @@ object VertexHelper {
                 backend = GenerativeBackend.googleAI()
             ).generativeModel("gemini-2.5-flash")
 
+            /* give ai the instruction here to let then pretend to be a person, this one
+            doesn't work super well yet so feel free to adjust.
+             */
+            model.generateContent("From now on, you'll pretend that you're a person someone is chatting to in a chatting app. Try do deduce your relationship with the user(friend, parent, etc.) and act accordingly. Keep it short like real chatting, under 15 words.")
+
             val response = try {
                 model.generateContent(prompt)
             } catch (e: Exception) {
