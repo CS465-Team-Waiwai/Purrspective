@@ -96,6 +96,14 @@
         android:visibility="gone"
         tools:visibility="gone">
 
+        <!-- Very simple button, no graphic design here, need to be refactored to look better -->
+        <Button
+            android:id="@+id/aiButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:padding="6dp"
+            android:text="AI" />
+
         <ImageView
             android:id="@+id/sticker1"
             android:layout_width="64dp"
