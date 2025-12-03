@@ -57,10 +57,8 @@ object VertexHelper {
             /* give ai the instruction to rephrase the words, also feel free to adjust if you come
             up with something better.
              */
-            model.generateContent("From now on, you'll rephrase the prompt given to you. Respond only with the refined sentence, make it a bit more emotional appealing and less aggressive. If it's already good, just say the original prompt")
-
             val response = try {
-                model.generateContent(prompt)
+                model.generateContent("Rephrase this sentence so it is in a normal tone, reply only with the refined sentence: " + prompt)
             } catch (e: Exception) {
                 Log.e("AI", "Generation failed", e)
                 null
