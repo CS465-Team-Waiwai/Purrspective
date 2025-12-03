@@ -42,4 +42,36 @@ object VertexHelper {
             }
         }
     }
+
+
+    fun rephrase(
+        context: Context,
+        prompt: String,
+        callback: (String) -> Unit
+    ) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val model = Firebase.ai(
+                backend = GenerativeBackend.googleAI()
+            ).generativeModel("gemini-2.5-flash")
+
+            /* give ai the instruction to rephrase the words, also feel free to adjust if you come
+            up with something better.
+             */
+            model.generateContent("From now on, you'll rephrase the prompt given to you. Respond only with the refined sentence, make it a bit more emotional appealing and less aggressive. If it's already good, just say the original prompt")
+
+            val response = try {
+                model.generateContent(prompt)
+            } catch (e: Exception) {
+                Log.e("AI", "Generation failed", e)
+                null
+            }
+
+            val text = response?.text ?: prompt
+
+            // Switch back to main thread for UI update
+            withContext(Dispatchers.Main) {
+                callback(text)
+            }
+        }
+    }
 }
