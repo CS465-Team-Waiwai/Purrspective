@@ -25,7 +25,7 @@ object VertexHelper {
             /* give ai the instruction here to let then pretend to be a person, this one
             doesn't work super well yet so feel free to adjust.
              */
-            model.generateContent("From now on, you'll pretend that you're a person someone is chatting to in a chatting app. Try do deduce your relationship with the user(friend, parent, etc.) and act accordingly. Keep it short like real chatting, under 15 words.")
+            model.generateContent("From now on, you'll pretend that you're a person someone is chatting to in a chatting app. Try do deduce your relationship with the user and act accordingly. Respond with only one sentence, don't provide to help like you normally do.")
 
             val response = try {
                 model.generateContent(prompt)
