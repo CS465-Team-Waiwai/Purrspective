@@ -1,13 +1,12 @@
 package com.example.purrspective;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +17,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     private List<Contact> contactList;
     private Context context;
 
-    public ContactAdapter(Context context,List<Contact> contactList) {
+    public ContactAdapter(Context context, List<Contact> contactList) {
         this.contactList = contactList;
         this.context = context;
     }
@@ -37,14 +36,20 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.textName.setText(contact.getName());
         holder.imageProfile.setImageResource(contact.getImageResId());
 
-        // click on the row -> open chat window activity
         holder.itemView.setOnClickListener(v -> {
-            context.startActivity(new Intent(context, ChatActivity.class));
+            Intent intent = new Intent(context, ChatActivity.class);
+
+            intent.putExtra("contact_id", contact.getId());
+            intent.putExtra("contact_name", contact.getName());
+
+            context.startActivity(intent);
         });
 
-        // Settings icon click -> open customization page
         holder.settingsDots.setOnClickListener(v -> {
-            context.startActivity(new Intent(context, CustomizationActivity.class));
+            Intent intent = new Intent(context, ChatActivity.class);
+            intent.putExtra("CONTACT_ID", contact.getId());
+            intent.putExtra("CONTACT_NAME", contact.getName());
+            context.startActivity(intent);
         });
     }
 
@@ -64,5 +69,4 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             settingsDots = itemView.findViewById(R.id.contact_settings);
         }
     }
-
 }

@@ -8,7 +8,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -18,108 +21,118 @@ public class ChatActivity extends AppCompatActivity {
     private EditText messageInput;
     private ScrollView chatScrollView;
 
-    private int selectedSticker = 0; //this is to remember which sticker we chose
+    private int selectedSticker = 0;
+
+    private int contactId;
+    private String contactName;
+
+    private AppDatabase db;
+    private MessageDao messageDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_screen);
 
-        stickerButton = findViewById(R.id.stickerButton);
-        chatContainer = findViewById(R.id.chatContainer);
-        messageInput = findViewById(R.id.messageInput);
-        chatScrollView = findViewById(R.id.chatScrollView);
-        stickerPack = findViewById(R.id.stickerPack);
-        sendButton = findViewById(R.id.sendButton);
+        stickerButton   = findViewById(R.id.stickerButton);
+        chatContainer   = findViewById(R.id.chatContainer);
+        messageInput    = findViewById(R.id.messageInput);
+        chatScrollView  = findViewById(R.id.chatScrollView);
+        stickerPack     = findViewById(R.id.stickerPack);
+        sendButton      = findViewById(R.id.sendButton);
         Button backButton = findViewById(R.id.backButton);
-
         ImageView sticker1 = findViewById(R.id.sticker1);
 
-        backButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        contactId = getIntent().getIntExtra("CONTACT_ID", -1);
+        contactName = getIntent().getStringExtra("CONTACT_NAME");
 
-        // toggle sticker pack visibility
-        stickerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (stickerPack.getVisibility() == View.GONE) {
-                    stickerPack.setVisibility(View.VISIBLE);
-                } else {
-                    stickerPack.setVisibility(View.GONE);
+        db = AppDatabase.getInstance(getApplicationContext());
+        messageDao = db.messageDao();
+
+        new Thread(() -> {
+            List<Message> history = messageDao.getMessagesForContact(contactId);
+            runOnUiThread(() -> {
+                for (Message m : history) {
+                    addMessageBubbleToUI(m);
                 }
+                chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN));
+            });
+        }).start();
+
+        backButton.setOnClickListener(view -> finish());
+
+        stickerButton.setOnClickListener(v -> {
+            if (stickerPack.getVisibility() == View.GONE) {
+                stickerPack.setVisibility(View.VISIBLE);
+            } else {
+                stickerPack.setVisibility(View.GONE);
             }
         });
 
-        // once we click on sticker pack, we can see and select stickers and then be able to send
-        sticker1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedSticker = R.drawable.cat_sticker3;
-                stickerPack.setVisibility(View.GONE);      // hide sticker row
-                sendButton.setVisibility(View.VISIBLE);    // reveal send button
-            }
+        sticker1.setOnClickListener(v -> {
+            selectedSticker = R.drawable.cat_sticker3;
+            stickerPack.setVisibility(View.GONE);
+            sendButton.setVisibility(View.VISIBLE);
         });
 
-        // when Send is pressed, we send message + sticker to chat
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String message = messageInput.getText().toString().trim();
+        sendButton.setOnClickListener(v -> {
+            String messageText = messageInput.getText().toString().trim();
 
-                if (selectedSticker != 0) { // means a sticker was chosen
-                    // create an ImageView for the sticker
-                    ImageView stickerView = new ImageView(ChatActivity.this);
-                    stickerView.setImageResource(selectedSticker);
-                    stickerView.setAdjustViewBounds(true);
-                    stickerView.setMaxWidth(200);
-                    stickerView.setMaxHeight(200);
+            if (selectedSticker != 0) {
+                Message msg = new Message(
+                        contactId,
+                        messageText,
+                        selectedSticker,
+                        System.currentTimeMillis()
+                );
 
-                    // create a mini container for message + sticker
-                    LinearLayout messageLayout = new LinearLayout(ChatActivity.this);
-                    messageLayout.setOrientation(LinearLayout.VERTICAL);
+                addMessageBubbleToUI(msg);
+                chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN));
 
-                    // right-align the whole bubble inside chat container
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                            LinearLayout.LayoutParams.WRAP_CONTENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT
-                    );
-                    layoutParams.gravity = android.view.Gravity.END; // aligns to the right
-                    layoutParams.setMargins(0, 12, 0, 12); // adds vertical spacing between messages
-                    messageLayout.setLayoutParams(layoutParams);
+                new Thread(() -> messageDao.insert(msg)).start();
 
-                    messageLayout.setBackgroundResource(R.drawable.message_bubble);
-
-                    // text part (if user typed something)
-                    if (!message.isEmpty()) {
-                        android.widget.TextView textView = new android.widget.TextView(ChatActivity.this);
-                        textView.setText(message);
-                        textView.setTextColor(getResources().getColor(android.R.color.black));
-                        textView.setTextSize(16);
-                        textView.setPadding(8, 4, 8, 4);
-                        messageLayout.addView(textView);
-                    }
-
-                    // sticker part
-                    messageLayout.addView(stickerView);
-
-                    // add the combined layout to chat container
-                    chatContainer.addView(messageLayout);
-
-
-                    // scroll to bottom
-                    chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN));
-
-                    // reset for next message
-                    messageInput.setText("");
-                    selectedSticker = 0;
-                    sendButton.setVisibility(View.GONE);
-                }
+                messageInput.setText("");
+                selectedSticker = 0;
+                sendButton.setVisibility(View.GONE);
             }
         });
+    }
 
+
+    private void addMessageBubbleToUI(Message messageObj) {
+        String message = messageObj.getText();
+        int stickerResId = messageObj.getStickerResId();
+
+        ImageView stickerView = new ImageView(ChatActivity.this);
+        stickerView.setImageResource(stickerResId);
+        stickerView.setAdjustViewBounds(true);
+        stickerView.setMaxWidth(200);
+        stickerView.setMaxHeight(200);
+
+        LinearLayout messageLayout = new LinearLayout(ChatActivity.this);
+        messageLayout.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.gravity = android.view.Gravity.END;
+        layoutParams.setMargins(0, 12, 0, 12);
+        messageLayout.setLayoutParams(layoutParams);
+
+        messageLayout.setBackgroundResource(R.drawable.message_bubble);
+
+        if (message != null && !message.isEmpty()) {
+            android.widget.TextView textView = new android.widget.TextView(ChatActivity.this);
+            textView.setText(message);
+            textView.setTextColor(getResources().getColor(android.R.color.black));
+            textView.setTextSize(16);
+            textView.setPadding(8, 4, 8, 4);
+            messageLayout.addView(textView);
+        }
+
+        messageLayout.addView(stickerView);
+
+        chatContainer.addView(messageLayout);
     }
 }
