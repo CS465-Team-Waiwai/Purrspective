@@ -1,9 +1,11 @@
 package com.example.purrspective;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -18,25 +20,29 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
-
+ImageView image1, image2;
+Drawable greenOutline;
 public class CustomizationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customization);
+        image1 = findViewById(R.id.image_style1);
+        image2 = findViewById(R.id.image_style2);
 
-        RecyclerView rv = findViewById(R.id.rvHorizontal);
-        rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        greenOutline = getResources().getDrawable(R.drawable.green_outline);
 
-        int[] images = {
-                R.drawable.image1,
-                R.drawable.image2,
-                R.drawable.image3,
-                R.drawable.image4 // add as many as you want
-        };
+        image1.setOnClickListener(v -> {
+            image1.setBackground(greenOutline);     // highlight
+            image2.setBackground(null);             // remove highlight
+        });
 
-        rv.setAdapter(new ImageCarouselAdapter(images));
+        image2.setOnClickListener(v -> {
+            image2.setBackground(greenOutline);
+            image1.setBackground(null);
+        });
+
 
         /* TODO: Complete the functionality */
         Button saveButton = findViewById(R.id.save_button);
