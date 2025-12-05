@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(
-        entities = {Contact.class, Message.class},
+        entities = { Contact.class, Message.class },
         version = 2,
         exportSchema = false
 )
