@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Selected state -->
+    <item android:state_selected="true"
+        android:drawable="@drawable/circle_selected_yellow"/>
+
+    <!-- Default state -->
+    <item android:drawable="@drawable/circle_default_yellow"/>
+</selector>

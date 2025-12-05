@@ -9,7 +9,7 @@
         android:orientation="vertical"
         android:layout_gravity="center_horizontal">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Friend A"
@@ -115,8 +115,8 @@
                 android:clickable="true"
                 android:focusable="true"/>
 
-
             <!-- Add more Views for additional colors -->
+
         </LinearLayout>
 
         <Button
