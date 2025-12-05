@@ -4,93 +4,92 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="391dp"
         android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_gravity="center_horizontal">
+        android:background="@color/peach">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal">
+            android:orientation="horizontal">
+
             <Button
-                android:id="@+id/save_button"
+                android:id="@+id/back_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                android:backgroundTint="@color/black"
-                android:text="Back"/>
+                android:backgroundTint="@color/orange"
+                android:text="Back" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/orange"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:text="Friend A"
-                android:textStyle="bold"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:background="@color/moss"
-	            android:layout_gravity="center_horizontal"
-	            android:textColor="@color/matcha"
+                android:textColor="@color/white"
                 android:textSize="25dp" />
-
         </LinearLayout>
-
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/moss"
             android:text="Customize Your Profile"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@color/sandy_brown"
-            android:textColor="@color/peach"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:textSize="30dp" />
+            android:textColor="@color/matcha"
+            android:textSize="38dp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:textStyle="bold"
-            android:text="*only friend A will see these changes"
+            android:layout_gravity="center"
             android:layout_marginTop="2dp"
-            android:layout_gravity="center"
-            android:textColor="@color/moss"
-            android:textSize="18dp" />
+            android:text="*only friend A will see these changes"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
             android:paddingLeft="10dp"
+            android:paddingTop="20dp"
             android:paddingBottom="10dp"
             android:text="Select profile icon style:"
-            android:layout_marginTop="2dp"
-            android:textColor="@color/black"
-            android:textSize="22dp" />
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
         <ImageView
             android:id="@+id/image_style1"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="100dp"
-            android:src="@drawable/gray_happy"
+            android:background="@null"
             android:padding="4dp"
-            android:background="@null" />
+            android:src="@drawable/orange_happy" />
 
         <ImageView
             android:id="@+id/image_style2"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/orange_happy"
+            android:background="@null"
             android:padding="4dp"
-            android:background="@null" />
+            android:src="@drawable/gray_happy" />
+        <!-- Add more Views for additional colors -->
 
-
-            <!-- Add more Views for additional colors -->
-        </LinearLayout>
+    </LinearLayout>
 
     <!-- Step 1
     Add an ImageView with the following attributes
