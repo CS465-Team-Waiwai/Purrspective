@@ -75,7 +75,7 @@
             android:layout_marginBottom="100dp"
             android:background="@null"
             android:padding="4dp"
-            android:src="@drawable/default_avatar" />
+            android:src="@drawable/orange_happy" />
 
         <ImageView
             android:id="@+id/image_style2"
@@ -84,7 +84,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@null"
             android:padding="4dp"
-            android:src="@drawable/cat_sticker1" />
+            android:src="@drawable/gray_happy" />
         <!-- Add more Views for additional colors -->
 
     </LinearLayout>
