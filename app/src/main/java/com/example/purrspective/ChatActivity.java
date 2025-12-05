@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import kotlin.Unit;
+
 public class ChatActivity extends AppCompatActivity {
 
     private ImageButton stickerButton, sendButton;
@@ -32,6 +34,7 @@ public class ChatActivity extends AppCompatActivity {
         stickerPack = findViewById(R.id.stickerPack);
         sendButton = findViewById(R.id.sendButton);
         Button backButton = findViewById(R.id.backButton);
+        Button aiButton = findViewById(R.id.aiButton);
 
         ImageView sticker1 = findViewById(R.id.sticker1);
 
@@ -53,6 +56,18 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
         });
+
+        aiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = messageInput.getText().toString().trim();
+
+                if (!text.isEmpty()) {
+                    AIRephrase(text);
+                }
+            }
+        });
+
 
         // once we click on sticker pack, we can see and select stickers and then be able to send
         sticker1.setOnClickListener(new View.OnClickListener() {
@@ -117,9 +132,55 @@ public class ChatActivity extends AppCompatActivity {
                     messageInput.setText("");
                     selectedSticker = 0;
                     sendButton.setVisibility(View.GONE);
+
+                    if (!message.isEmpty()) {
+                        getAIResponse(message);
+                    }
+
                 }
             }
         });
 
+    }
+
+    private void addAIMessage(String text) {
+        LinearLayout aiLayout = new LinearLayout(this);
+        aiLayout.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.gravity = android.view.Gravity.START; // left side
+        params.setMargins(0, 12, 0, 12);
+        aiLayout.setLayoutParams(params);
+
+        aiLayout.setBackgroundResource(R.drawable.message_bubble);
+
+        android.widget.TextView textView = new android.widget.TextView(this);
+        textView.setText(text);
+        textView.setTextColor(getResources().getColor(android.R.color.black));
+        textView.setTextSize(16);
+        textView.setPadding(8, 4, 8, 4);
+
+        aiLayout.addView(textView);
+        chatContainer.addView(aiLayout);
+
+        chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN));
+    }
+
+    private void getAIResponse(String prompt) {
+        VertexHelper.INSTANCE.askAsync(this, prompt, reply -> {
+            // This runs on the main thread already
+            addAIMessage(reply);
+            return Unit.INSTANCE;
+        });
+    }
+
+    private void AIRephrase(String sentence) {
+        VertexHelper.INSTANCE.rephrase(this, sentence, reply -> {
+            messageInput.setText(reply);
+            return Unit.INSTANCE;
+        });
     }
 }
