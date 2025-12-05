@@ -1,8 +1,0 @@
-<resources>
-
-    <style name="ToolbarTitleText" parent ="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">30sp</item>
-
-    </style>
-
-</resources>
