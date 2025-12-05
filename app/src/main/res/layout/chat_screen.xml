@@ -93,7 +93,7 @@
         android:padding="8dp"
         android:visibility="gone"
         android:scrollbars="none"
-        tools:visibility="gone">
+        tools:visibility="visible">
     <LinearLayout
         android:id="@+id/stickerRow"
         android:layout_width="wrap_content"
@@ -115,7 +115,8 @@
             android:layout_height="64dp"
             android:contentDescription="Happy Sticker"
             android:padding="6dp"
-            android:src="@drawable/orange_happy" />
+            android:src="@drawable/orange_happy"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/sticker2"
@@ -123,7 +124,8 @@
             android:layout_height="64dp"
             android:contentDescription="Sad Sticker"
             android:padding="6dp"
-            android:src="@drawable/orange_sad" />
+            android:src="@drawable/orange_sad"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/sticker3"
@@ -131,7 +133,8 @@
             android:layout_height="64dp"
             android:contentDescription="Angry Sticker"
             android:padding="6dp"
-            android:src="@drawable/orange_angry" />
+            android:src="@drawable/orange_angry"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/sticker4"
@@ -139,7 +142,8 @@
             android:layout_height="64dp"
             android:contentDescription="Surprised Sticker"
             android:padding="6dp"
-            android:src="@drawable/orange_surprised" />
+            android:src="@drawable/orange_surprised"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/sticker5"
@@ -147,7 +151,8 @@
             android:layout_height="64dp"
             android:contentDescription="Working Sticker"
             android:padding="6dp"
-            android:src="@drawable/orange_working" />
+            android:src="@drawable/orange_working"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/sticker6"
@@ -155,6 +160,7 @@
             android:layout_height="64dp"
             android:contentDescription="Sleepy Sticker"
             android:padding="6dp"
-            android:src="@drawable/orange_sleepy" />
+            android:src="@drawable/orange_sleepy"
+            android:visibility="gone"/>
     </LinearLayout> </HorizontalScrollView>
 </LinearLayout>

@@ -95,19 +95,15 @@ public class ChatActivity extends AppCompatActivity {
             String text = messageInput.getText().toString().trim();
             if (!text.isEmpty()) {
                 AIRephrase(text);
+                sticker1.setVisibility(View.VISIBLE);
+                sticker2.setVisibility(View.VISIBLE);
+                sticker3.setVisibility(View.VISIBLE);
+                sticker4.setVisibility(View.VISIBLE);
+                sticker5.setVisibility(View.VISIBLE);
+                sticker6.setVisibility(View.VISIBLE);
             }
         });
-
-        aiButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String text = messageInput.getText().toString().trim();
-
-                if (!text.isEmpty()) {
-                    AIRephrase(text);
-                }
-            }
-        });
+        
 
 
         // once we click on sticker pack, we can see and select stickers and then be able to send
