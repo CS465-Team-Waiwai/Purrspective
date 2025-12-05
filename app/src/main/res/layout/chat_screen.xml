@@ -33,26 +33,7 @@
             android:layout_height="wrap_content"
             android:padding="4dp">
 
-            <!-- Filler Stickers to show how interface would look like -->
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/cat_sticker1"
-                android:padding="10dp"
-                android:layout_gravity="start"
-                android:adjustViewBounds="true"
-                android:maxWidth="200dp"
-                android:maxHeight="200dp"/>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/cat_sticker2"
-                android:padding="10dp"
-                android:layout_gravity="end"
-                android:adjustViewBounds="true"
-                android:maxWidth="200dp"
-                android:maxHeight="200dp"/>
 
         </LinearLayout>
     </ScrollView>
@@ -103,43 +84,77 @@
 
     </LinearLayout>
 
-    <!-- Sticker Pack Section (Hidden by default) -->
-    <LinearLayout
+    <!-- Sticker Pack Section (Hidden by default) this needs to have horizontally scrollable view because it was cutting stickers otherwise-->
+    <HorizontalScrollView
         android:id="@+id/stickerPack"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/cream"
-        android:gravity="center"
-        android:orientation="horizontal"
         android:padding="8dp"
         android:visibility="gone"
+        android:scrollbars="none"
         tools:visibility="gone">
+    <LinearLayout
+        android:id="@+id/stickerRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Very simple button, no graphic design here, need to be refactored to look better -->
+        <Button
+            android:id="@+id/aiButton"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:padding="6dp"
+            android:text="AI" />
 
         <ImageView
             android:id="@+id/sticker1"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:contentDescription="Sticker 3"
+            android:contentDescription="Happy Sticker"
             android:padding="6dp"
-            android:src="@drawable/cat_sticker3" />
+            android:src="@drawable/orange_happy" />
 
         <ImageView
             android:id="@+id/sticker2"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:contentDescription="Sticker 4"
+            android:contentDescription="Sad Sticker"
             android:padding="6dp"
-            android:src="@drawable/cat_sticker4" />
+            android:src="@drawable/orange_sad" />
 
         <ImageView
             android:id="@+id/sticker3"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:contentDescription="Sticker 5"
+            android:contentDescription="Angry Sticker"
             android:padding="6dp"
-            android:src="@drawable/cat_sticker5" />
-    </LinearLayout>
+            android:src="@drawable/orange_angry" />
 
+        <ImageView
+            android:id="@+id/sticker4"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Surprised Sticker"
+            android:padding="6dp"
+            android:src="@drawable/orange_surprised" />
 
+        <ImageView
+            android:id="@+id/sticker5"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Working Sticker"
+            android:padding="6dp"
+            android:src="@drawable/orange_working" />
 
+        <ImageView
+            android:id="@+id/sticker6"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="Sleepy Sticker"
+            android:padding="6dp"
+            android:src="@drawable/orange_sleepy" />
+    </LinearLayout> </HorizontalScrollView>
 </LinearLayout>
