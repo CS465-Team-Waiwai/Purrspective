@@ -20,18 +20,17 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
-ImageView image1, image2;
-Drawable greenOutline;
+
 public class CustomizationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customization);
-        image1 = findViewById(R.id.image_style1);
-        image2 = findViewById(R.id.image_style2);
+        ImageView image1 = findViewById(R.id.image_style1);
+        ImageView image2 = findViewById(R.id.image_style2);
 
-        greenOutline = getResources().getDrawable(R.drawable.green_outline);
+        Drawable greenOutline = getResources().getDrawable(R.drawable.green_outline);
 
         image1.setOnClickListener(v -> {
             image1.setBackground(greenOutline);     // highlight
