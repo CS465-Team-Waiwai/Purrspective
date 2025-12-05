@@ -15,19 +15,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
+import kotlin.Unit;
+
 public class ChatActivity extends AppCompatActivity {
 
-    private ImageButton stickerButton;
-    private ImageButton sendButton;
-    private Button aiButton;
-
-    private LinearLayout stickerPack;
+    private ImageButton stickerButton, sendButton;
+    // Use View so stickerPack can be a HorizontalScrollView or LinearLayout
+    private View stickerPack;
     private LinearLayout chatContainer;
     private EditText messageInput;
     private ScrollView chatScrollView;
+    private Button aiButton;
 
-    private int selectedStickerResId = 0;
+    // which sticker we chose (drawable res id)
+    private int selectedSticker = 0;
 
+    // contact / DB stuff
     private int contactId = -1;
     private String contactName;
 
@@ -40,13 +43,14 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.chat_screen);
 
         stickerButton   = findViewById(R.id.stickerButton);
-        sendButton      = findViewById(R.id.sendButton);
-        aiButton        = findViewById(R.id.aiButton);
-        stickerPack     = findViewById(R.id.stickerPack);
         chatContainer   = findViewById(R.id.chatContainer);
         messageInput    = findViewById(R.id.messageInput);
         chatScrollView  = findViewById(R.id.chatScrollView);
+        stickerPack     = findViewById(R.id.stickerPack);
+        sendButton      = findViewById(R.id.sendButton);
         Button backButton = findViewById(R.id.backButton);
+        aiButton        = findViewById(R.id.aiButton);
+
 
         ImageView sticker1 = findViewById(R.id.sticker1);
 
@@ -68,15 +72,16 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-        sticker1.setOnClickListener(v -> {
-            selectedStickerResId = R.drawable.cat_sticker3;
-            stickerPack.setVisibility(View.GONE);
-            sendButton.setVisibility(View.VISIBLE);
+        aiButton.setOnClickListener(v -> {
+            String text = messageInput.getText().toString().trim();
+            if (!text.isEmpty()) {
+                AIRephrase(text);
+            }
         });
 
-        sendButton.setOnClickListener(v -> sendUserMessage());
+        setupStickerClick(sticker1, R.drawable.orange_happy);
 
-        aiButton.setOnClickListener(v -> onAiButtonClicked());
+        sendButton.setOnClickListener(v -> sendUserMessage());
     }
 
 
@@ -98,7 +103,7 @@ public class ChatActivity extends AppCompatActivity {
     private void sendUserMessage() {
         String userText = messageInput.getText().toString().trim();
 
-        if (userText.isEmpty() && selectedStickerResId == 0) {
+        if (userText.isEmpty() && selectedSticker == 0) {
             return;
         }
 
@@ -107,7 +112,7 @@ public class ChatActivity extends AppCompatActivity {
         Message userMsg = new Message(
                 contactId,
                 userText,
-                selectedStickerResId,
+                selectedSticker,
                 now
         );
 
@@ -117,21 +122,21 @@ public class ChatActivity extends AppCompatActivity {
         new Thread(() -> messageDao.insert(userMsg)).start();
 
         messageInput.setText("");
-        selectedStickerResId = 0;
+        selectedSticker = 0;
         sendButton.setVisibility(View.GONE);
+
+        if (!userText.isEmpty()) {
+            getAIResponse(userText);
+        }
     }
 
 
-    private void onAiButtonClicked() {
-        String original = messageInput.getText().toString().trim();
-        if (original.isEmpty()) {
-            return;
-        }
-
-        String rewritten = "AI suggestion: " + original;
-
-        messageInput.setText(rewritten);
-        messageInput.setSelection(messageInput.getText().length());
+    private void setupStickerClick(ImageView stickerView, int drawableResId) {
+        stickerView.setOnClickListener(v -> {
+            selectedSticker = drawableResId;
+            stickerPack.setVisibility(View.GONE);      // hide sticker row
+            sendButton.setVisibility(View.VISIBLE);    // show send button
+        });
     }
 
 
@@ -177,7 +182,62 @@ public class ChatActivity extends AppCompatActivity {
         chatContainer.addView(bubble);
     }
 
+
+    private void addAIMessage(String text) {
+        if (text == null || text.isEmpty()) return;
+
+        LinearLayout aiLayout = new LinearLayout(this);
+        aiLayout.setOrientation(LinearLayout.VERTICAL);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.gravity = Gravity.START; // AI on left
+        params.setMargins(0, 12, 0, 12);
+        aiLayout.setLayoutParams(params);
+
+        aiLayout.setBackgroundResource(R.drawable.message_bubble);
+
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setTextColor(getResources().getColor(android.R.color.black));
+        textView.setTextSize(16);
+        textView.setPadding(8, 4, 8, 4);
+
+        aiLayout.addView(textView);
+        chatContainer.addView(aiLayout);
+
+        scrollToBottom();
+    }
+
     private void scrollToBottom() {
         chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN));
+    }
+
+
+    private void getAIResponse(String prompt) {
+        VertexHelper.INSTANCE.askAsync(this, prompt, reply -> {
+            addAIMessage(reply);
+
+            long now = System.currentTimeMillis();
+            Message aiMsg = new Message(
+                    contactId,
+                    reply,
+                    0,
+                    now
+            );
+            new Thread(() -> messageDao.insert(aiMsg)).start();
+
+            return Unit.INSTANCE;
+        });
+    }
+
+    private void AIRephrase(String sentence) {
+        VertexHelper.INSTANCE.rephrase(this, sentence, reply -> {
+            messageInput.setText(reply);
+            messageInput.setSelection(messageInput.getText().length());
+            return Unit.INSTANCE;
+        });
     }
 }
