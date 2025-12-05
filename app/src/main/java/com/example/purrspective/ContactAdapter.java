@@ -46,7 +46,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         });
 
         holder.settingsDots.setOnClickListener(v -> {
-            Intent intent = new Intent(context, ChatActivity.class);
+            Intent intent = new Intent(context, CustomizationActivity.class);
             intent.putExtra("CONTACT_ID", contact.getId());
             intent.putExtra("CONTACT_NAME", contact.getName());
             context.startActivity(intent);
