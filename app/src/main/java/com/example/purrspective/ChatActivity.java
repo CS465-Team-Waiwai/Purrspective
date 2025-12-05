@@ -66,6 +66,19 @@ public class ChatActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(getApplicationContext());
         messageDao = db.messageDao();
 
+        ContactDao contactDao = db.contactDao();
+        Contact contact = contactDao.getContactById(contactId);
+
+        int style = 0;
+        if (contact != null) {
+            style = contact.getStyleId();  // the field you added earlier
+        }
+
+// Apply the correct sticker pack based on style
+        applyStickerPack(style);
+
+
+
         loadHistoryMessages();
 
         backButton.setOnClickListener(v -> finish());
@@ -171,6 +184,19 @@ public class ChatActivity extends AppCompatActivity {
         sendButton.setOnClickListener(v -> sendUserMessage());
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        ContactDao contactDao = db.contactDao();
+        Contact contact = contactDao.getContactById(contactId);
+
+        if (contact != null) {
+            int style = contact.getStyleId();
+            applyStickerPack(style);
+        }
+    }
+
 
     private void loadHistoryMessages() {
         if (contactId == -1) return;
@@ -236,6 +262,67 @@ public class ChatActivity extends AppCompatActivity {
             stickerPack.setVisibility(View.GONE);      // hide sticker row
             sendButton.setVisibility(View.VISIBLE);    // show send button
         });
+    }
+
+    private void applyStickerPack(int style) {
+
+        ImageView sticker1 = findViewById(R.id.sticker1);
+        ImageView sticker2 = findViewById(R.id.sticker2);
+        ImageView sticker3 = findViewById(R.id.sticker3);
+        ImageView sticker4 = findViewById(R.id.sticker4);
+        ImageView sticker5 = findViewById(R.id.sticker5);
+        ImageView sticker6 = findViewById(R.id.sticker6);
+
+        if (style == 1) {
+            // GRAY PACK
+            sticker1.setImageResource(R.drawable.orange_happy);
+            sticker2.setImageResource(R.drawable.orange_sad);
+            sticker3.setImageResource(R.drawable.orange_angry);
+            sticker4.setImageResource(R.drawable.orange_surprised);
+            sticker5.setImageResource(R.drawable.orange_working);
+            sticker6.setImageResource(R.drawable.orange_sleepy);
+
+            setupStickerClick(sticker1, R.drawable.orange_happy);
+            setupStickerClick(sticker2, R.drawable.orange_sad);
+            setupStickerClick(sticker3, R.drawable.orange_angry);
+            setupStickerClick(sticker4, R.drawable.orange_surprised);
+            setupStickerClick(sticker5, R.drawable.orange_working);
+            setupStickerClick(sticker6, R.drawable.orange_sleepy);
+
+
+
+        } else if (style == 2) {
+            // ORANGE PACK
+            sticker1.setImageResource(R.drawable.gray_happy);
+            sticker2.setImageResource(R.drawable.gray_sad);
+            sticker3.setImageResource(R.drawable.gray_angry);
+            sticker4.setImageResource(R.drawable.gray_surprised);
+            sticker5.setImageResource(R.drawable.gray_working);
+            sticker6.setImageResource(R.drawable.gray_sleepy);
+
+            setupStickerClick(sticker1, R.drawable.gray_happy);
+            setupStickerClick(sticker2, R.drawable.gray_sad);
+            setupStickerClick(sticker3, R.drawable.gray_angry);
+            setupStickerClick(sticker4, R.drawable.gray_surprised);
+            setupStickerClick(sticker5, R.drawable.gray_working);
+            setupStickerClick(sticker6, R.drawable.gray_sleepy);
+
+        } else {
+            // default pack
+            sticker1.setImageResource(R.drawable.orange_happy);
+            sticker2.setImageResource(R.drawable.orange_sad);
+            sticker3.setImageResource(R.drawable.orange_angry);
+            sticker4.setImageResource(R.drawable.orange_surprised);
+            sticker5.setImageResource(R.drawable.orange_working);
+            sticker6.setImageResource(R.drawable.orange_sleepy);
+
+            setupStickerClick(sticker1, R.drawable.orange_happy);
+            setupStickerClick(sticker2, R.drawable.orange_sad);
+            setupStickerClick(sticker3, R.drawable.orange_angry);
+            setupStickerClick(sticker4, R.drawable.orange_surprised);
+            setupStickerClick(sticker5, R.drawable.orange_working);
+            setupStickerClick(sticker6, R.drawable.orange_sleepy);
+        }
     }
 
 
@@ -340,3 +427,5 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 }
+
+

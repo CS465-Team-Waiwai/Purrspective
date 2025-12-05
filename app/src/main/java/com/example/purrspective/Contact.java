@@ -18,6 +18,8 @@ public class Contact {
     @ColumnInfo(name = "imageResId")
     private int imageResId;
 
+    private int styleId;
+
     public Contact(String name, String phone, int imageResId) {
         this.name = name;
         this.phone = phone;
@@ -25,6 +27,8 @@ public class Contact {
     }
 
     // Getters and setters (Room needs them)
+    public int getStyleId() { return styleId; }
+    public void setStyleId(int styleID) {this.styleId = styleID;}
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
