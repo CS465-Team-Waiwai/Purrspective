@@ -9,9 +9,10 @@
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -35,10 +36,22 @@
 
         </LinearLayout>
 
+=======
+            android:text="Friend A"
+            android:textStyle="bold"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/moss"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/matcha"
+            android:textSize="25dp" />
+>>>>>>> main
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+<<<<<<< HEAD
             android:layout_gravity="center"
             android:background="@color/dark_orange"
             android:text="Customize Your Profile"
@@ -57,10 +70,39 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+=======
+            android:text="Customize Your Profile"
+            android:textStyle="bold|italic"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@color/sandy_brown"
+            android:textColor="@color/peach"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textSize="30dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:text="*only friend A will see these changes"
+            android:layout_marginTop="2dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/moss"
+            android:textSize="18dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:text="Select profile icon style:"
+>>>>>>> main
             android:layout_marginTop="2dp"
             android:text="Select profile icon style:"
             android:textColor="@color/black"
             android:textSize="22dp" />
+<<<<<<< HEAD
 
         <ImageView
             android:id="@+id/image_style1"
@@ -80,9 +122,86 @@
             android:background="@null"
             android:padding="4dp"
             android:src="@drawable/orange_happy" />
+=======
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select color theme:"
+            android:paddingLeft="10dp"
+            android:paddingTop="20dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black"
+            android:textSize="22dp" />
+        <LinearLayout
+            android:id="@+id/colorContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="12dp">
 
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_orange"
+                android:clickable="true"
+                android:focusable="true"/>
+>>>>>>> main
 
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_blue"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_purple"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_yellow"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="60dp"
+                android:background="@drawable/circle_selector_pink"
+                android:clickable="true"
+                android:focusable="true"/>
+
+<<<<<<< HEAD
         <!-- Add more Views for additional colors -->
+    </LinearLayout>
+=======
+            <!-- Add more Views for additional colors -->
+
+        </LinearLayout>
+>>>>>>> main
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/sandy_brown"
+            android:textColor="@color/peach"
+            android:text="View or select saved styles"/>
+
     </LinearLayout>
 
     <!-- Step 1

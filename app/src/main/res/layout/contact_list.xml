@@ -3,23 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/peach">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/orange"
+        android:background="@color/sandy_brown"
         android:title="@string/contact_header"
-        android:titleTextColor="@color/white" />
+
+        app:titleTextAppearance="@style/ToolbarTitleText"
+        android:titleTextColor="@color/peach" />
 
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Contact"
-        android:background="@color/dark_orange"
-        android:textColor="@android:color/white"
+        android:textSize = "20dp"
+        android:background="@color/moss"
+        android:textColor="@color/matcha"
         android:padding="12dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

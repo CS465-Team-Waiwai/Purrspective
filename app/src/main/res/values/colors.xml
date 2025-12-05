@@ -15,4 +15,11 @@
     <color name="yellow">#D7B615</color>
     <color name="magenta">#B8156F</color>
     <color name="cream">#FFF9F4</color>
+    <color name="pumpkin">#FF8237</color>
+    <color name="sandy_brown">#FFAA6E</color>
+    <color name="light_yellow">#FFFBDC</color>
+    <color name="light_orange">#FFD3A5</color>
+    <color name="peach">#FFE9D6</color>
+    <color name="matcha">#DBE8C3</color>
+    <color name="moss">#334D42</color>
 </resources>
