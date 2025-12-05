@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/backButton"
         android:text="Back"
-        android:backgroundTint="@color/orange">
+        android:backgroundTint="@color/sandy_brown">
     </Button>
 
 
