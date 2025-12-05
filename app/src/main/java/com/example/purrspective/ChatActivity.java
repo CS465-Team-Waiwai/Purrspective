@@ -15,7 +15,7 @@ import kotlin.Unit;
 public class ChatActivity extends AppCompatActivity {
 
     private ImageButton stickerButton, sendButton;
-    private LinearLayout stickerPack;
+    private View stickerPack; //changed this from linearlayout to View to allow horizontally scrollable
     private LinearLayout chatContainer;
     private EditText messageInput;
     private ScrollView chatScrollView;
@@ -36,7 +36,14 @@ public class ChatActivity extends AppCompatActivity {
         Button backButton = findViewById(R.id.backButton);
         Button aiButton = findViewById(R.id.aiButton);
 
-        ImageView sticker1 = findViewById(R.id.sticker1);
+
+        ImageView sticker1 = findViewById(R.id.sticker1); // happy
+        ImageView sticker2 = findViewById(R.id.sticker2); // sad
+        ImageView sticker3 = findViewById(R.id.sticker3); // angry
+        ImageView sticker4 = findViewById(R.id.sticker4); // surprised
+        ImageView sticker5 = findViewById(R.id.sticker5); // working
+        ImageView sticker6 = findViewById(R.id.sticker6); // sleepy
+
 
         backButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -70,14 +77,13 @@ public class ChatActivity extends AppCompatActivity {
 
 
         // once we click on sticker pack, we can see and select stickers and then be able to send
-        sticker1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedSticker = R.drawable.cat_sticker3;
-                stickerPack.setVisibility(View.GONE);      // hide sticker row
-                sendButton.setVisibility(View.VISIBLE);    // reveal send button
-            }
-        });
+        setupStickerClick(sticker1, R.drawable.orange_happy);
+        setupStickerClick(sticker2, R.drawable.orange_sad);
+        setupStickerClick(sticker3, R.drawable.orange_angry);
+        setupStickerClick(sticker4, R.drawable.orange_surprised);
+        setupStickerClick(sticker5, R.drawable.orange_working);
+        setupStickerClick(sticker6, R.drawable.orange_sleepy);
+
 
         // when Send is pressed, we send message + sticker to chat
         sendButton.setOnClickListener(new View.OnClickListener() {
@@ -141,6 +147,14 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setupStickerClick(ImageView stickerView, int drawableResId) {
+        stickerView.setOnClickListener(v -> {
+            selectedSticker = drawableResId;
+            stickerPack.setVisibility(View.GONE);      // hide sticker row
+            sendButton.setVisibility(View.VISIBLE);    // show send button
+        });
     }
 
     private void addAIMessage(String text) {
