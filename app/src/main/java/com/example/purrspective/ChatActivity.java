@@ -90,14 +90,26 @@ public class ChatActivity extends AppCompatActivity {
 
         new Thread(() -> {
             List<Message> history = messageDao.getMessagesForContact(contactId);
+
             runOnUiThread(() -> {
-                for (Message m : history) {
-                    addMessageBubbleToUI(m);
+                //load them so they are alternating
+                for (int i = 0; i < history.size(); i++) {
+                    Message m = history.get(i);
+
+                    if (i % 2 == 0) {
+                        // user message
+                        addMessageBubbleToUI(m);
+                    } else {
+                        // AI message (text only)
+                        addAIMessage(m.getText());
+                    }
                 }
+
                 scrollToBottom();
             });
         }).start();
     }
+
 
 
     private void sendUserMessage() {
