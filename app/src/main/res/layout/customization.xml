@@ -9,24 +9,39 @@
         android:orientation="vertical"
         android:layout_gravity="center_horizontal">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Friend A"
-            android:textStyle="bold"
-            android:paddingLeft="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:background="@color/moss"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/matcha"
-            android:textSize="25dp" />
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:backgroundTint="@color/black"
+                android:text="Back"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Friend A"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@color/moss"
+	            android:layout_gravity="center_horizontal"
+	            android:textColor="@color/matcha"
+                android:textSize="25dp" />
+
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Customize Your Profile"
-            android:textStyle="bold|italic"
             android:layout_gravity="center"
             android:gravity="center"
             android:background="@color/sandy_brown"
@@ -38,9 +53,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
+            android:textStyle="bold"
             android:text="*only friend A will see these changes"
             android:layout_marginTop="2dp"
-            android:textStyle="bold"
             android:layout_gravity="center"
             android:textColor="@color/moss"
             android:textSize="18dp" />
@@ -54,80 +69,28 @@
             android:layout_marginTop="2dp"
             android:textColor="@color/black"
             android:textSize="22dp" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select color theme:"
-            android:paddingLeft="10dp"
-            android:paddingTop="20dp"
-            android:layout_marginTop="2dp"
-            android:textColor="@color/black"
-            android:textSize="22dp" />
-        <LinearLayout
-            android:id="@+id/colorContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:padding="12dp">
+        <ImageView
+            android:id="@+id/image_style1"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="100dp"
+            android:src="@drawable/gray_happy"
+            android:padding="4dp"
+            android:background="@null" />
 
-            <View
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="60dp"
-                android:background="@drawable/circle_selector_orange"
-                android:clickable="true"
-                android:focusable="true"/>
+        <ImageView
+            android:id="@+id/image_style2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/orange_happy"
+            android:padding="4dp"
+            android:background="@null" />
 
-            <View
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="60dp"
-                android:background="@drawable/circle_selector_blue"
-                android:clickable="true"
-                android:focusable="true"/>
-
-            <View
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="60dp"
-                android:background="@drawable/circle_selector_purple"
-                android:clickable="true"
-                android:focusable="true"/>
-
-            <View
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="60dp"
-                android:background="@drawable/circle_selector_yellow"
-                android:clickable="true"
-                android:focusable="true"/>
-
-            <View
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_margin="60dp"
-                android:background="@drawable/circle_selector_pink"
-                android:clickable="true"
-                android:focusable="true"/>
 
             <!-- Add more Views for additional colors -->
-
         </LinearLayout>
-
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/sandy_brown"
-            android:textColor="@color/peach"
-            android:text="View or select saved styles"/>
-
-    </LinearLayout>
 
     <!-- Step 1
     Add an ImageView with the following attributes
