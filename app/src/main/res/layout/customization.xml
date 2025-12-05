@@ -26,9 +26,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Friend A"
-                android:background="@color/orange"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@color/moss"
+	            android:layout_gravity="center_horizontal"
+	            android:textColor="@color/matcha"
                 android:textSize="25dp" />
 
         </LinearLayout>
@@ -39,20 +43,28 @@
             android:layout_height="wrap_content"
             android:text="Customize Your Profile"
             android:layout_gravity="center"
-            android:background="@color/dark_orange"
-            android:textColor="@color/white"
-            android:textSize="38dp" />
+            android:gravity="center"
+            android:background="@color/sandy_brown"
+            android:textColor="@color/peach"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:textSize="30dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:textStyle="bold"
             android:text="*only friend A will see these changes"
             android:layout_marginTop="2dp"
             android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textColor="@color/moss"
+            android:textSize="18dp" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
             android:text="Select profile icon style:"
             android:layout_marginTop="2dp"
             android:textColor="@color/black"
