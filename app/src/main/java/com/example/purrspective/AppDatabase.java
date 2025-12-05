@@ -6,22 +6,33 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.purrspective.Contact;
-import com.example.purrspective.ContactDao;
-
-@Database(entities = {Contact.class}, version = 1)
+@Database(
+        entities = { Contact.class, Message.class },
+        version = 2,
+        exportSchema = false
+)
 public abstract class AppDatabase extends RoomDatabase {
-    private static AppDatabase instance;
+
+    private static volatile AppDatabase INSTANCE;
 
     public abstract ContactDao contactDao();
+    public abstract MessageDao messageDao();
 
-    public static synchronized AppDatabase getInstance(Context context) {
-        if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(),
-                            AppDatabase.class, "contact_db")
-                    .allowMainThreadQueries()
-                    .build();
+    public static AppDatabase getInstance(Context context) {
+        if (INSTANCE == null) {
+            synchronized (AppDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(
+                                    context.getApplicationContext(),
+                                    AppDatabase.class,
+                                    "purrspective_db"
+                            )
+                            .fallbackToDestructiveMigration()
+                            .allowMainThreadQueries()
+                            .build();
+                }
+            }
         }
-        return instance;
+        return INSTANCE;
     }
 }
