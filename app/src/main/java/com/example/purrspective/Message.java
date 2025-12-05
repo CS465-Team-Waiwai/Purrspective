@@ -10,11 +10,8 @@ public class Message {
     private int id;
 
     private int contactId;
-
     private String text;
-
     private int stickerResId;
-
     private long timestamp;
 
     public Message(int contactId, String text, int stickerResId, long timestamp) {
@@ -24,19 +21,45 @@ public class Message {
         this.timestamp = timestamp;
     }
 
-    // ===== getters / setters =====
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    // --- getters & setters ---
 
-    public int getContactId() { return contactId; }
-    public void setContactId(int contactId) { this.contactId = contactId; }
+    public int getId() {
+        return id;
+    }
 
-    public String getText() { return text; }
-    public void setText(String text) { this.text = text; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public int getStickerResId() { return stickerResId; }
-    public void setStickerResId(int stickerResId) { this.stickerResId = stickerResId; }
+    public int getContactId() {
+        return contactId;
+    }
 
-    public long getTimestamp() { return timestamp; }
-    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public int getStickerResId() {
+        return stickerResId;
+    }
+
+    public void setStickerResId(int stickerResId) {
+        this.stickerResId = stickerResId;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
 }
