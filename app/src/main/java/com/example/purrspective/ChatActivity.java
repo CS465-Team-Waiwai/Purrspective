@@ -15,7 +15,7 @@ import kotlin.Unit;
 public class ChatActivity extends AppCompatActivity {
 
     private ImageButton stickerButton, sendButton;
-    private LinearLayout stickerPack;
+    private View stickerPack; //changed this from linearlayout to View to allow horizontally scrollable
     private LinearLayout chatContainer;
     private EditText messageInput;
     private ScrollView chatScrollView;
