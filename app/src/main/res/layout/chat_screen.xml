@@ -101,13 +101,13 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-        <!-- Very simple button, no graphic design here, need to be refactored to look better -->
-        <Button
+        <ImageView
             android:id="@+id/aiButton"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:padding="6dp"
-            android:text="AI" />
+            android:src="@drawable/ai_suggestion"
+            android:clickable="true"/>
 
         <ImageView
             android:id="@+id/sticker1"

@@ -24,7 +24,7 @@ public class ChatActivity extends AppCompatActivity {
     private LinearLayout chatContainer;
     private EditText messageInput;
     private ScrollView chatScrollView;
-    private Button aiButton;
+    private ImageView aiButton;
 
     // which sticker we chose (drawable res id)
     private int selectedSticker = 0;
