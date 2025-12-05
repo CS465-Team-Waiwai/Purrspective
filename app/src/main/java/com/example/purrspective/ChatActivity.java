@@ -20,8 +20,7 @@ import kotlin.Unit;
 public class ChatActivity extends AppCompatActivity {
 
     private ImageButton stickerButton, sendButton;
-    // Use View so stickerPack can be a HorizontalScrollView or LinearLayout
-    private View stickerPack;
+    private View stickerPack; //changed this from linearlayout to View to allow horizontally scrollable
     private LinearLayout chatContainer;
     private EditText messageInput;
     private ScrollView chatScrollView;
@@ -52,7 +51,14 @@ public class ChatActivity extends AppCompatActivity {
         aiButton        = findViewById(R.id.aiButton);
 
 
-        ImageView sticker1 = findViewById(R.id.sticker1);
+
+        ImageView sticker1 = findViewById(R.id.sticker1); // happy
+        ImageView sticker2 = findViewById(R.id.sticker2); // sad
+        ImageView sticker3 = findViewById(R.id.sticker3); // angry
+        ImageView sticker4 = findViewById(R.id.sticker4); // surprised
+        ImageView sticker5 = findViewById(R.id.sticker5); // working
+        ImageView sticker6 = findViewById(R.id.sticker6); // sleepy
+
 
         contactId = getIntent().getIntExtra("contact_id", -1);
         contactName = getIntent().getStringExtra("contact_name");
@@ -79,7 +85,88 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        aiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = messageInput.getText().toString().trim();
+
+                if (!text.isEmpty()) {
+                    AIRephrase(text);
+                }
+            }
+        });
+
+
+        // once we click on sticker pack, we can see and select stickers and then be able to send
         setupStickerClick(sticker1, R.drawable.orange_happy);
+        setupStickerClick(sticker2, R.drawable.orange_sad);
+        setupStickerClick(sticker3, R.drawable.orange_angry);
+        setupStickerClick(sticker4, R.drawable.orange_surprised);
+        setupStickerClick(sticker5, R.drawable.orange_working);
+        setupStickerClick(sticker6, R.drawable.orange_sleepy);
+
+
+        // when Send is pressed, we send message + sticker to chat
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String message = messageInput.getText().toString().trim();
+
+                if (selectedSticker != 0) { // means a sticker was chosen
+                    // create an ImageView for the sticker
+                    ImageView stickerView = new ImageView(ChatActivity.this);
+                    stickerView.setImageResource(selectedSticker);
+                    stickerView.setAdjustViewBounds(true);
+                    stickerView.setMaxWidth(200);
+                    stickerView.setMaxHeight(200);
+
+                    // create a mini container for message + sticker
+                    LinearLayout messageLayout = new LinearLayout(ChatActivity.this);
+                    messageLayout.setOrientation(LinearLayout.VERTICAL);
+
+                    // right-align the whole bubble inside chat container
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    layoutParams.gravity = android.view.Gravity.END; // aligns to the right
+                    layoutParams.setMargins(0, 12, 0, 12); // adds vertical spacing between messages
+                    messageLayout.setLayoutParams(layoutParams);
+
+                    messageLayout.setBackgroundResource(R.drawable.message_bubble);
+
+                    // text part (if user typed something)
+                    if (!message.isEmpty()) {
+                        android.widget.TextView textView = new android.widget.TextView(ChatActivity.this);
+                        textView.setText(message);
+                        textView.setTextColor(getResources().getColor(android.R.color.black));
+                        textView.setTextSize(16);
+                        textView.setPadding(8, 4, 8, 4);
+                        messageLayout.addView(textView);
+                    }
+
+                    // sticker part
+                    messageLayout.addView(stickerView);
+
+                    // add the combined layout to chat container
+                    chatContainer.addView(messageLayout);
+
+
+                    // scroll to bottom
+                    chatScrollView.post(() -> chatScrollView.fullScroll(View.FOCUS_DOWN));
+
+                    // reset for next message
+                    messageInput.setText("");
+                    selectedSticker = 0;
+                    sendButton.setVisibility(View.GONE);
+
+                    if (!message.isEmpty()) {
+                        getAIResponse(message);
+                    }
+
+                }
+            }
+        });
 
         sendButton.setOnClickListener(v -> sendUserMessage());
     }
