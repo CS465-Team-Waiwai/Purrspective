@@ -40,4 +40,5 @@ public class Contact {
 
     public int getImageResId() { return imageResId; }
     public void setImageResId(int imageResId) { this.imageResId = imageResId; }
+
 }

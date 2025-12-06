@@ -5,10 +5,10 @@
 
     <LinearLayout
         android:layout_width="391dp"
-        android:layout_height="match_parent"
+        android:layout_height="811dp"
         android:layout_gravity="center_horizontal"
-        android:orientation="vertical"
-        android:background="@color/peach">
+        android:background="@color/peach"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,15 +25,16 @@
                 android:text="Back" />
 
             <TextView
+                android:id="@+id/contactName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/orange"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="Friend A"
                 android:textColor="@color/white"
                 android:textSize="25dp" />
+
         </LinearLayout>
 
         <TextView
@@ -51,9 +52,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="2dp"
             android:text="*only friend A will see these changes"
-            android:textStyle="bold"
             android:textColor="@color/black"
-            android:textSize="14dp" />
+            android:textSize="14dp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,18 +64,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:text="Select profile icon style:"
-            android:textStyle="bold"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/image_style1"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="50dp"
             android:background="@null"
             android:padding="4dp"
             android:src="@drawable/orange_happy" />
