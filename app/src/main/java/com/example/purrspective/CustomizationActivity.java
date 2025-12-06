@@ -1,13 +1,19 @@
 package com.example.purrspective;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.PickVisualMediaRequest;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,11 +31,19 @@ public class CustomizationActivity extends AppCompatActivity {
 
     private int selectedStyle=-1;
     private int ContactID;
+    private static final int PICK_IMAGE = 1001;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customization);
+        TextView contactNameTextView = findViewById(R.id.contactName);
+
+        String contactName = getIntent().getStringExtra("CONTACT_NAME");
+        if (contactName != null) {
+            contactNameTextView.setText(contactName);
+        }
         ContactID = getIntent().getIntExtra("CONTACT_ID", -1);
         ImageView image1 = findViewById(R.id.image_style1);
         ImageView image2 = findViewById(R.id.image_style2);
@@ -65,11 +79,13 @@ public class CustomizationActivity extends AppCompatActivity {
         });
     }
 
+
     private void SaveStyleToDatabase(int styleValue) {
         AppDatabase db = AppDatabase.getInstance(this);
         db.contactDao().updateStyleForContact(ContactID, styleValue);
         Toast.makeText(this, "style updated!", Toast.LENGTH_SHORT).show();
     }
+
 
     public int getSelectedStyle() {
         return selectedStyle;
