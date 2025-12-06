@@ -64,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
+            android:layout_marginBottom="20dp"
             android:text="Select profile icon style:"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -73,7 +74,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="50dp"
             android:background="@null"
             android:padding="4dp"
             android:src="@drawable/orange_happy" />
@@ -87,32 +88,6 @@
             android:padding="4dp"
             android:src="@drawable/gray_happy" />
         <!-- Add more Views for additional colors -->
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="4dp"
-            android:background="@android:color/darker_gray" />
-
-        <ImageView
-            android:id="@+id/profile_preview"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/circle_mask"
-            android:clipToOutline="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/default_avatar" />
-
-        <Button
-            android:id="@+id/upload_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="@color/orange"
-            android:text="Upload Profile Picture" />
 
     </LinearLayout>
 
